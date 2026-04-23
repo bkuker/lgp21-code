@@ -1,0 +1,265 @@
+;0001000'/0001000'
+0000   u0137'          go to start
+       ,0000001'
+0001   80000200'       overflow off, if on
+0002   u0003'
+0003   b0053'          overflow flag
+0004   a0054'          8000 0000
+0005   b0058'          pseudo accumulator
+0006   z0000'          this is "R" register
+0007   u0008'
+0008   c0058'          pseudo accumulator
+0009   u0011'
+0010   xm0000'         7 at 15
+0011   b0026'          counter register          ; NOTE: hand copy reads p0026
+0012   h0227'          counter print register
+0013   a0049'          1 at 29
+       ,0000001'
+0014   80000200'       overflow on?
+0015   a0044'          8000 0000
+0016   u0017'
+0017   h0053'          set overflow flag
+0018   y0026'
+0019   b0212'          c flag
+0020   t0156'          print counter if neg
+0021   b0207'          r flag
+0022   t0101'          print command if neg
+0023   b0209'          a flag
+0024   t0117'          print accumulator if neg
+0025   800t0311'       go to inquiry if tc on
+0026   b0000'          this is counter register
+0027   h0006'          r register
+0028   e0036'          xs6363
+0029   s0037'          10 at 15
+0030   t0059'          z thru e if neg
+0031   s0039'          1 at 15
+0032   t0218'          u command
+0033   s0226'          1 at 15
+0034   t0213'          t command
+0035   u0001'          h thru s
+       ,0000004'
+0036   000w3wwj'       xs6363
+0037   000f0000'       10 at 15
+0038   00000004'       1 at 29
+0039   00010000'       1 at 15
+0040   b0026'          c register
+0041   a0249'          2 at 29
+0042   y0000'          to memory for "R" command
+0043   u0011'
+       ,0000002'
+0044   80000000'
+0045   08000000'       1 at 4
+0046   a0225'          2 at 15 here for z thru y
+0047   t0234'          z command
+0048   u0001'          b thru y
+       ,0000001'
+0049   00000004'       1 at 29
+0050   b0229'          tc flag here for -t
+0051   t0218'          u command
+0052   u0215'          t command
+       ,0000002'
+0053   00000000'       overflow flag
+0054   80000000'
+0055   b0006'          r register here for r
+0056   y0042'
+0057   u0040'
+0058   z0000'          this is pseudo accumulator
+0059   a0010'          7 at 15 here for z thru e
+0060   t0046'          z thru y
+0061   s0226'          1 at 15
+0062   t0055'          r command
+0063   u0001'          i thru e
+0100   z0000'          temp flags
+0101   b0309'          4000 0000 here for print r
+0102   xp0200'         c.r.
+0103   b0006'          r register
+0104   t0147'
+0105   e0155'          xs6363
+0106   a0228'          0j00 4000
+0107   xp0200'         space or -
+0108   xi6200'
+0109   xi6200'
+0110   xp0200'         command letter
+0111   e0254'          03ww j000
+0112   r0305'
+0113   u0256'          print address and space
+0114   u0201'
+       ,0000002'
+0115   0000000q'
+0116   00000002'       1 at 30
+0117   b0310'          4000 0000 here for print a
+0118   xp0200'         c.r.
+0119   b0058'          a register
+       ,0000016'
+0120   80080200'       print 1st char. of a
+0121   80043q00'       4 bit shift left
+0122   80080200'       print 2nd
+0123   80043q00'       shift 4 bits
+0124   80080200'       print 3rd
+0125   80043q00'       shift 4 bits
+0126   80080200'       print 4th
+0127   80043q00'       shift 4 bits
+0128   80080200'       print 5th
+0129   80043q00'       shift 4 bits
+0130   80080200'       print 6th
+0131   80043q00'       shift 4 bits
+0132   80080200'       print 7th
+0133   80043q00'       shift 4 bits
+0134   80080200'       print 8th
+0135   80043q00'       shift 4 bits-clear acc.
+0136   u0025'
+0137   b0309'          4000 0000 start here
+0138   xp0200'         c.r.
+0139   80xi0200'       input start trace address
+0140   n0250'          1 at 29
+0141   h0230'          ts 1                      ; NOTE: hand copy reads h0250; h0230 preferred (0230="ts 1 binarize")
+0142   e0307'          0003 j3j0
+0143   m0223'          -6 at 4
+0144   a0230'          ts 1
+0145   h0231'          ts 2                      ; NOTE: hand copy reads h0251; h0231 preferred (0231="ts 2 binarize")
+0146   u0150'
+0147   e0155'          xs6363
+0148   a0306'          1j00 4000
+0149   u0107'
+0150   e0308'          0000 ww00
+0151   m0247'          -3/4 at 0
+0152   a0231'          ts 2
+0153   y0026'
+0154   u0311'
+0155   xs6363'
+0156   b0349'          4000 0000 here for print c
+0157   xp0200'         c.r.
+0158   b0227'          counter print register
+0159   e0224'          xs6363
+0160   d0233'          10 at 20-1 at 30
+0161   r0305'
+0162   u0257'          print address and space
+0163   b0207'          r flag
+0200   t0103'          if neg print r
+0201   b0209'          a flag
+0202   t0119'          if neg print a
+0203   u0025'
+       ,0000009'
+0204   40300000'
+0205   0wwwwwwq'
+0206   00000006'       3 at 30
+0207   00000000'       this is r flag            ; NOTE: PDF reads 00000000;
+0208   04wwq000'       10 at 8-1 at 18
+0209   00000000'       this is a flag
+0210   00000002'       1 at 30                   ; NOTE: hand copy reads 90000002; 9 rejected as transcription error
+0211   00000002'       1 at 30
+0212   00000000'       this is c flag
+0213   b0006'          r register here for t
+0214   t0050'          -t if neg
+0215   b0058'          a register
+0216   t0218'          c register here for u
+0217   u0011'
+0218   b0026'          counter print register
+0219   c0227'
+0220   b0006'          r register
+0221   u0018'
+0222   u0018'
+       ,0000011'
+0223   k0000000'       -6 at 4
+0224   00003wwj'       xz6363                    ; NOTE: PDF reads 00003wwj;
+0225   00020000'       2 at 15
+0226   00010000'       1 at 15
+0227   00000000'       this is counter print register
+0228   0j004000'
+0229   00000000'       this is t flag
+0230   00000000'       ts 1 binarize
+0231   00000000'       ts 2 binarize
+0232   0000000f'       10 at 31
+0233   00004wwq'       10 at 20-1 at 30
+0234   b0006'          r register here for z
+0235   c0243'
+       ,0000001'
+0236   80000200'       overflow off, if on
+0237   u0238'
+0238   b0053'          over flag
+0239   a0054'          8000 0000
+0240   b0026'          c register
+0241   h0227'          counter print register
+0242   u0243'
+0243   z0000'          z instruction here for execution
+0244   u0013'
+0245   a0038'          1 at 29
+0246   u0013'
+       ,0000004'
+0247   f0000000'       -3/4 at 0
+0248   13wwwwwq'       10 at 6-1 at 30
+0249   00000008'       2 at 29
+0250   00000004'       1 at 29
+0251   c0207'
+0252   u0342'                                    ; NOTE: hand copy reads u034e; rejected, e invalid in address
+       ,0000003'
+0253   0j000000'
+0254   03wwj000'
+0255   80000000'
+0256   d0208'          10 at 8-1 at 18
+0257   80xp0200'       print track tens
+0258   e0205'          0www wwwq
+0259   n0232'          10 at 31
+0260   80xp0200'       print track units
+0261   e0205'          0www wwwq
+0262   d0248'          10 at 6-1 at 30
+0263   80xp0200'       print sector tens
+0300   e0205'          0www wwwq
+0301   n0232'          10 at 31
+0302   80xp0200'       print sector units
+0303   b0253'          0j00 0000
+0304   xp0200'         space
+0305   u0000'          print address and space exit
+       ,0000005'
+0306   1j004000'
+0307   0003j3j0'
+0308   0000ww00'
+0309   40000000'
+0310   40000000'
+0311   b0212'          c flag here for inquiry
+0312   t0318'          continue unchanged
+0313   b0026'          c reg
+0314   e0350'          xz6363
+0315   d0233'          10 at 20-1 at 30
+0316   r0305'
+0317   u0257'          print address and space
+0318   b0204'          4030 0000
+0319   xp0200'         c.r.
+0320   xi6200'         shift 6 bits left
+0321   xp0200'         space
+0322   80xi0200'       input code word
+0323   t0026'          continue unchanged
+0324   h0207'          r flag
+0325   h0209'          a flag
+0326   h0212'          c flag
+0327   h0229'          t flag
+0328   h0100'          temp flags
+0329   e0115'          0000 000q
+0330   s0116'          1 at 30
+0331   t0026'          was zero character
+0332   s0211'          1 at 30
+0333   t0251'          was r character
+0334   s0206'          3 at 30
+0335   t0137'          was x character-go to start
+0336   s0116'          1 at 30
+0337   t0347'          was t character
+0338   s0210'          1 at 30
+0339   t0345'          was c character
+0340   b0255'          8000 0000
+0341   c0209'          a flag
+0342   b0100'          temp flags
+0343   m0045'          1 at 4-shift next character down for testing
+0344   u0328'
+0345   c0212'          c flag
+0346   u0342'
+0347   c0229'          t flag
+0348   u0342'
+       ,0000002'
+0349   40000000'
+0350   00003wwj'       xz6363
+
+;0004000'/0000000
+'b4004'a4005'80xp0200'xz0000',0000002'10000000'20000000'
+
+.0001000'
+
