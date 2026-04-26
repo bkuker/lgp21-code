@@ -1,3 +1,28 @@
+;Draw a Mandelbrot Set on the LGP Flexowriter.
+;   Track Usage:
+;       Track 20,
+;             21: Code
+;       Track 22: Data
+;
+;Usage:
+; Choose one of three entry points, small, medium or large.
+; Program will immediately print the mandelbrot set then halt.
+; You may resume after halt to print it again at the same size.
+;
+;Notes:
+; Variables are scattered around track 22 for optimization.
+; Code was optimized starting at instruction 2000, and then
+; the size inputs were added later, so I snuck them in after
+; the main part of the program
+;
+;Credits:
+; Code Bill Kuker, 2026
+;       https://github.com/bkuker/lgp21-code/
+; Developed using emulator by Rhys Weatherley
+;       https://github.com/rweather/lgp21-tools
+; Inspired by restoration project by David Lovett
+;       https://www.youtube.com/@UsagiElectric
+
     .entry large
 
 
