@@ -41,7 +41,7 @@
 
 ;Current position
 .2245:	iPos:	.dw 0
-.2262:	rPos:	.dw 0;
+.2262:	rPos:	.dw 0
 
 ;Iteration variables
 .2251:	itr:	.dw 0
@@ -60,44 +60,20 @@
 .2226:	eol:	.dw "\n"
 .2252:	space:	.dw " "
 
-    .org 2115
-small:
-    ld iLowSmall
-    st iLow
-    ld iStepSmall
-    st iStep
-    ld rStepSmall
-    st rStep
-    jmp start
-medium:
-    ld iLowMed
-    st iLow
-    ld iStepMed
-    st iStep
-    ld rStepMed
-    st rStep
-    jmp start
-large:
-    ld iLowLarge
-    st iLow
-    ld iStepLarge
-    st iStep
-    ld rStepLarge
-    st rStep
-    jmp start
-
 ;Tiny 20 min
 ;Vertical range & size
+    .org 2201
 iLowSmall:	.dw -1.2 >> 4
 iStepSmall:	.dw 0.30 >> 4
 rStepSmall:	.dw 0.120 >> 4
 
 ;Small 70 min
 ;Vertical range & size
+    .org 2207
 iLowMed:	.dw -1.2 >> 4
 iStepMed:	.dw 0.15 >> 4
 rStepMed:	.dw 0.060 >> 4
-
+    .org 2214
 ;Big 2.6 hours
 ;Vertical range & size
 iLowLarge:	.dw -1.1 >> 4
@@ -200,4 +176,29 @@ in:         ld space
 done:
     hlt
     jmp start
+small:
+    ld iLowSmall
+    st iLow
+    ld iStepSmall
+    st iStep
+    ld rStepSmall
+    st rStep
+    jmp start
+medium:
+    ld iLowMed
+    st iLow
+    ld iStepMed
+    st iStep
+    ld rStepMed
+    st rStep
+    jmp start
+large:
+    ld iLowLarge
+    st iLow
+    ld iStepLarge
+    st iStep
+    ld rStepLarge
+    st rStep
+    jmp start
+
 
