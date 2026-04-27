@@ -81,7 +81,7 @@ iStepLarge:	.dw 0.1 >> 4
 rStepLarge:	.dw 0.040 >> 4
 
 .2254: creditAddr:  .dw creditData
-.2256: creditData: .dw "LGP-21 Wm Kuker 2026"
+.2256: creditData: .dw "LGP-21 Wm Kuker 2026\n"
 
 
     .org 2000
