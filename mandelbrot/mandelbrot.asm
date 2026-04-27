@@ -80,6 +80,10 @@ iLowLarge:	.dw -1.1 >> 4
 iStepLarge:	.dw 0.1 >> 4
 rStepLarge:	.dw 0.040 >> 4
 
+.2254: creditAddr:  .dw creditData
+.2256: creditData: .dw "LGP-21 Wm Kuker 2026"
+
+
     .org 2000
 
 start:                      ;Start a new fractal  
@@ -174,8 +178,34 @@ in:         ld space
             pr6
             jmp nextChar
 done:
+    ld      creditAddr
+    sret    prstr_return
+    jmp     prstr
     hlt
     jmp start
+inc_addr:
+    .dw     0001
+prstr:
+    sta     prstr_load
+prstr_load:
+    ld      0000
+    pr6
+    shl6
+    pr6
+    shl6
+    pr6
+    shl6
+    pr6
+    shl6
+    pr6
+    shl6
+    jn      prstr_return
+    ld      prstr_load
+    add     inc_addr
+    sta     prstr_load
+    jmp     prstr_load
+prstr_return:
+    jmp     0000
 small:
     ld iLowSmall
     st iLow
