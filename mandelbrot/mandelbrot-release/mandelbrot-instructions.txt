@@ -1,0 +1,24 @@
+Mandelbrot for LGP-21
+=====================
+
+The "mandelbrot.ptp" tape image can be loaded via the main tape reader
+and the following bootstrap:
+
+    000c3w00 800i0000
+    000c3w04 000c3w0j
+    000c3w08 800i0000
+    000u3w00 00000000
+
+The program lives in tracks 20-22 and there and three entry points
+for "small", "medium", and "large" versions of the Mandelbrot that
+can be activated from the console with:
+
+    small:  000u1590 00000000
+    medium: 000u15fj 00000000
+    large:  000u15j8 00000000
+
+Estimated runtimes from Rhys Weatherley's Python emulator:
+
+    small:  20 minutes
+    medium: 1 hour, 12 minutes
+    large:  2 hours, 36 minutes
