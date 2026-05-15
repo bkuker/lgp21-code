@@ -1,3 +1,7 @@
+;Print a logistic equation bifurcation diagram
+; Code: Track 30, 31
+; Scratch: Track 63
+
     .entry start
     .org 3000
 
@@ -14,14 +18,16 @@ x:      .dw 0
 one:    .dw 1.0 >> 4
 
 shift: .dw $00001000
-buf:    .dw 4000
+buf:    .dw 6300
 
 burnIters: .dw #10
-recordIters: .dw #40
+recordIters: .dw #30
 iterCount: .dw 0
 iterDec: .dw #2
 
 start:
+    ld eol
+    pr6
     ld rLow                 ;Load the starting R value
     st r                    ;and store it to R
 next_r:
@@ -86,7 +92,7 @@ iter_ret:
 
 ; Clear out entire buffer track with space character
 buf_inc:    .dw     &01000004   ;Innstruction increment
-storeI:     .dw     &400j2800   ;Store to 40:00 with counter in high bits
+storeI:     .dw     &400j3w00   ;Store to 63:00 with counter in high bits
 clear:
     ld storeI
 clear_next:
@@ -103,7 +109,7 @@ clear_ret:
     jmp 0
 
 ; Print out buffer track followed by a CRLF
-loadI:  .dw     &40012800   ;Load to 40:00 with counter in high bits
+loadI:  .dw     &40013w00   ;Load to 63:00 with counter in high bits
 eol:    .dw "\n"
 print:
     ld loadI
